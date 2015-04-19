@@ -1,0 +1,225 @@
+
+// @param {string} bp Breakpoint value. One of `xs, sm, md, lg`.
+// @param {boolean} isMaxWidth By default, the media queries are mobile first,
+//     so they use `min-width: __px`. By passing `true`, the mixin will subtract
+//     one pixel from the breakpoint value and make it `max-width: __px`.
+//
+@mixin breakpoint($bp, $isMaxWidth: false) {
+  $breakpoint: map-get($breakpoints, $bp);
+  $media: if($isMaxWidth, 'max-width', 'min-width');
+
+  @if $isMaxWidth {
+    $breakpoint: $breakpoint - 1px;
+  }
+
+  @if map-has-key($breakpoints, $bp) {
+    @media (#{$media}: $breakpoint) {
+      @content;
+    }
+  } @else {
+    @warn "#{$bp} not recognized. Valid breakpoints: #{map-keys($breakpoints)}";
+  }
+}
+
+@mixin breakpoints($min, $max) {
+  $start: map-get($breakpoints, $min);
+  $end: map-get($breakpoints, $max);
+
+  @if map-has-key($breakpoints, $min) and map-has-key($breakpoints, $max) {
+    $end: $end - 1px;
+    @if $start > $end {
+      @warn "Unreachable media query: #{$start} <--> #{$end}";
+    } @else {
+      // There should be no lower bound when the extra small breakpoint is used.
+      // e.g. `@include breakpoints(xs, sm)` should be from 0 <--> 760, not 328 <--> 760.
+      @if $min == "xs" {
+        @media (max-width: $end) {
+          @content;
+        }
+      } @else {
+        @media (min-width: $start) and (max-width: $end) {
+          @content;
+        }
+      }
+    }
+  } @else {
+    @warn "#{$min} or #{$max} breakpoint not recognized. Valid breakpoints: #{map-keys($breakpoints)}";
+  }
+}
+
+@mixin augmentHitArea($byPercent: 100%, $pseudo: 'after') {
+  $isPercent: str-slice(inspect($byPercent), -1) == "%";
+  $size: if($isPercent, 100% + $byPercent, $byPercent);
+  $offset: if($isPercent, $byPercent / -2, $byPercent / -4);
+
+  // Increase the hit area by 100% by placing a pseudo element behind the handle
+  &::#{$pseudo} {
+    content: '';
+    position: absolute;
+    // Having the hit area on top of the handle seemed to help Android a little. Was below it (-1)
+    z-index: 1;
+    top: $offset;
+    left: $offset;
+    display: block;
+    width: $size;
+    height: $size;
+
+    // Uncomment to see the hit area
+    // background-color: rgba(255, 255, 0, 0.3);
+  }
+}
+
+
+@mixin keep-aspect() {
+  position: relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 100%;
+}
+
+@mixin aspect($width, $height) {
+  padding-bottom: percentage($height / $width);
+}
+
+@mixin no-aspect() {
+  height: auto;
+  padding-bottom: 0;
+}
+
+
+// Fill the parent using absolute positioning
+@mixin fill-parent() {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+
+// A ghost element used to vertically center something
+// http://css-tricks.com/centering-in-the-unknown/
+@mixin ghost( $child: 'ghost-center' ) {
+  font-size: 0;
+  height: 100%;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: 0;
+    height: 100%;
+  }
+
+  .#{$child} {
+    display: inline-block;
+
+    // For Firefox...
+    max-width: 100%;
+    max-height: 100%;
+
+    // Yeya!
+    vertical-align: middle;
+
+    // Because the parent has a font-size of 0.
+    font-size: 16px;
+    font-size: 1rem;
+  }
+}
+
+
+// Clearfix
+// --------
+// For clearing floats like a boss h5bp.com/q
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// Text overflow
+// -------------------------
+// Requires inline-block or block for proper styling
+@mixin text-overflow($nowrap: true) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @if ( $nowrap ) {
+    white-space: nowrap;
+  }
+}
+
+
+@mixin font-smooth($smooth: true) {
+  @if $smooth {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  @else {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+// Placeholder text
+// -------------------------
+@mixin placeholder($color: grey70, $smooth: false) {
+  &:-moz-placeholder {
+    color: get-color($colors, $color);
+    @if $smooth {
+      @include font-smooth();
+    }
+  }
+  &:-ms-input-placeholder {
+    color: get-color($colors, $color);
+    @if $smooth {
+      @include font-smooth();
+    }
+  }
+  &::-webkit-input-placeholder {
+    color: get-color($colors, $color);
+    @if $smooth {
+      @include font-smooth();
+    }
+  }
+}
+
+@mixin background-cover() {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// Font mixins
+@mixin make-type-style($face, $weight:400, $style:normal, $size:16, $color:$default-font-color, $transform:none, $margin-bottom:24, $line-height:0, $letter-spacing:0) {
+  $comp-line-height: 0;
+  @if ($line-height==0) {
+    $comp-line-height: $default-line-height;
+  }
+  @else if $line-height < 3 {
+    $comp-line-height: $line-height;
+  }
+  @else {
+    $comp-line-height: $line-height / strip-units($size);
+  }
+
+  font-style: $style;
+  font-family: unquote(map-get($font-families, $face));
+  font-weight: $weight;
+  font-size: $size + 0px;
+  font-size: px-rem($size);
+  text-transform: $transform;
+  line-height: $comp-line-height;
+  letter-spacing: ($letter-spacing / 1000) + 0rem;
+  color: get-color($colors, $color);
+  margin-bottom: $margin-bottom + 0px;
+  margin-bottom: px-rem($margin-bottom);
+}

@@ -1,0 +1,91 @@
+
+
+// .container
+.#{$grid-container} {
+  padding-left: map-get($grid-container-padding, "xs");
+  padding-right: map-get($grid-container-padding, "xs");
+  @include clearfix();
+
+  &--xs-full {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+// .row
+.#{$grid-row} {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $grid-max-width;
+  @include clearfix();
+}
+
+// .row .row
+.#{$grid-row} .#{$grid-row} {
+  margin-left: $grid-gutter-width / -2;
+  margin-right: $grid-gutter-width / -2;
+}
+
+// .aspect
+.#{$grid-ratio-name} {
+  @include keep-aspect();
+}
+
+// .aspect-1x1 etc.
+@include grid-ratios();
+
+// .aspect > div or .aspect-inner
+.#{$grid-ratio-name} > div,
+.#{$grid-ratio-inner-name} {
+  @extend .fill-parent;
+}
+
+// Create basic styles for every grid class.
+@include make-grid-columns();
+
+// Only the extra small grid takes effect at all times. Mobile first!
+@include make-grid(xs, 6);
+
+
+@include breakpoint(sm) {
+
+  // Generate new grid classes that apply only at this breakpoint and higher.
+  @include make-grid(sm);
+
+  // Add more padding to the container class.
+  .#{$grid-container} {
+    padding-left: map-get($grid-container-padding, "sm");
+    padding-right: map-get($grid-container-padding, "sm");
+  }
+}
+
+
+@include breakpoint(md) {
+
+  // Generate new grid classes that apply only at this breakpoint and higher.
+  @include make-grid(md);
+
+  .#{$grid-container} {
+    padding-left: map-get($grid-container-padding, "md");
+    padding-right: map-get($grid-container-padding, "md");
+  }
+}
+
+
+@include breakpoint(lg) {
+
+  // Generate new grid classes that apply only at this breakpoint and higher.
+  @include make-grid(lg);
+
+  .#{$grid-container} {
+    padding-left: map-get($grid-container-padding, "lg");
+    padding-right: map-get($grid-container-padding, "lg");
+  }
+}
+
+@media (min-width: $viewport-at-max-grid-width) {
+  .#{$grid-container} {
+    padding-left: $grid-max-container-padding;
+    padding-right: $grid-max-container-padding;
+  }
+}

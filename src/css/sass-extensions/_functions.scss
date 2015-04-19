@@ -1,0 +1,46 @@
+// strip units from any number. "50px" returns 50.
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+// convert px to em, with regard to its context. Most context will be 16px.
+@function px-em($px, $context: 16) {
+  @return strip-units($px) / strip-units($context) + 0em;
+}
+
+@function px-rem($px, $context: $base-pixel-size) {
+  @return strip-units($px) / strip-units($context) + 0rem;
+}
+
+@function get-font-family($family) {
+  @return unquote(map-get($font-families, $family));
+}
+
+@function to-string($value) {
+  @return inspect($value);
+}
+
+// type - the map of colors to look in
+// identifier - the color's id in that map
+@function get-color($map, $color: null) {
+  @if type-of($map) == "map" {
+    @return map-get($map, $color);
+  } @else {
+    $key: to-string($map);
+    @if global-variable-exists('colors') and map-has-key($colors, $key) {
+      @return map-get($colors, $key);
+    } @else {
+      @warn "Unknown color: #{$map}";
+      @return $key;
+    }
+  }
+
+}
+
+@function z($layer) {
+  @if not map-has-key($z-layers, $layer) {
+    @warn "No layer found for `#{$layer}` in $z-layers map. Property omitted.";
+  }
+
+  @return map-get($z-layers, $layer);
+}

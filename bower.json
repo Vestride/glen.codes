@@ -1,0 +1,21 @@
+{
+  "name": "glen.codes",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Glen Cheney's Frontend Development Blog",
+  "homepage": "https://github.com/Vestride/glen.codes",
+  "authors": [
+    "Glen Cheney <cheney.glen@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize.css": "~3.0.3"
+  }
+}

@@ -1,0 +1,70 @@
+
+
+$colors: (
+  black: #000000,
+  white: #FFFFFF
+);
+
+$breakpoints: (
+  xs: 0px,
+  sm: 760px,
+  md: 1016px,
+  lg: 1400px
+);
+
+$font-families: (
+  lato: "'Lato'"
+);
+
+$z-layers: (
+  page-header: 400,
+  above-page-header: 410
+);
+
+$base-pixel-size: 16;
+
+// Grid
+// --------
+
+$grid-container: 'container';
+$grid-row: 'row';
+$grid-prefix: 'col';
+$grid-ratio-name: 'aspect';
+$grid-ratio-inner-name: 'aspect-inner';
+
+$grid-ratios: (
+  '16x9': (16, 9),
+  '9x16': (9, 16),
+  '4x3': (4, 3),
+  '3x4': (3, 4),
+  '3x2': (3, 2),
+  '2x3': (2, 3),
+  '1x1': (1, 1)
+);
+
+// Number of columns in the grid.
+$grid-columns: 12;
+
+// Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width: 16px;
+$grid-max-width: 1200px;
+$grid-sizes: (xs, sm, md, lg);
+
+$grid-container-padding: (
+  xs: 3.25%,
+  sm: 3.25%,
+  md: 3.5%,
+  lg: 3.5%
+);
+
+// 0.035
+$_grid-padding-pct: (strip-units(map-get($grid-container-padding, "md")) / 100);
+
+// Size of the window when the grid row has hit max-width.
+$viewport-at-max-grid-width: round($grid-max-width / (1 - $_grid-padding-pct * 2));
+
+// Padding at the max grid width.
+$grid-max-container-padding: round($_grid-padding-pct * $viewport-at-max-grid-width);
+
+
+$media-object-margin: $grid-gutter-width;

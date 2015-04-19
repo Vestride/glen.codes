@@ -1,0 +1,132 @@
+@function get-grid-selectors() {
+  $selector: ();
+  @for $i from 1 through $grid-columns {
+    $cols: "";
+    @each $size in $grid-sizes {
+      $cols: $cols + ".#{$grid-prefix}-#{$size}-#{$i}, ";
+    }
+
+    $selector: append($selector, unquote($cols), comma);
+  }
+  @return $selector;
+}
+
+
+@function get-grid-class-selectors($class) {
+  $selector: ();
+  @for $i from 1 through $grid-columns {
+    $selector: append($selector, unquote('.#{$grid-prefix}-#{$class}-#{$i}'), comma);
+  }
+
+  @return $selector;
+}
+
+
+@mixin make-grid-columns() {
+  $selector: get-grid-selectors();
+
+  #{$selector} {
+    position: relative;
+    box-sizing: border-box;
+    // Prevent columns from collapsing when empty
+    min-height: 1px;
+    // Inner gutter via padding
+    padding-left:  ($grid-gutter-width / 2);
+    padding-right: ($grid-gutter-width / 2);
+  }
+}
+
+
+@mixin float-grid-columns($class) {
+  $selector: get-grid-class-selectors($class);
+
+  #{$selector} {
+    float: left;
+  }
+}
+
+
+@mixin grid-ratios($class: "") {
+  // If there is a grid breakpoint class here, prepend a hyphen.
+  // e.g. "-sm" or "" when there isn't a class.
+  @if $class != "" {
+    $class: "-" + $class;
+  }
+
+  // Note @extend isn't used because it cannot be used within @media directives.
+  @each $name, $list in $grid-ratios {
+    .#{$grid-ratio-name}#{$class}-#{$name} {
+      padding-bottom: percentage(nth($list, 2) / nth($list, 1));
+    }
+  }
+
+  // A `none` class (eg `aspect-xs-none`) which removes the aspect ratio
+  .#{$grid-ratio-name}#{$class}-none {
+    @include no-aspect();
+
+    > .aspect-inner {
+      position: static;
+    }
+  }
+}
+
+
+@mixin calc-grid-column($index, $columns, $class, $type) {
+  @if ($type == width) and ($index > 0) {
+    .#{$grid-prefix}-#{$class}-#{$index} {
+      width: percentage(($index / $columns));
+    }
+  }
+  @if ($type == push) and ($index > 0) {
+    .#{$grid-prefix}-#{$class}-push-#{$index} {
+      left: percentage(($index / $columns));
+    }
+  }
+  @if ($type == push) and ($index == 0) {
+    .#{$grid-prefix}-#{$class}-push-0 {
+      left: auto;
+    }
+  }
+  @if ($type == pull) and ($index > 0) {
+    .#{$grid-prefix}-#{$class}-pull-#{$index} {
+      right: percentage(($index / $columns));
+    }
+  }
+  @if ($type == pull) and ($index == 0) {
+    .#{$grid-prefix}-#{$class}-pull-0 {
+      right: auto;
+    }
+  }
+  @if ($type == offset) {
+    .#{$grid-prefix}-#{$class}-offset-#{$index} {
+      margin-left: percentage(($index / $columns));
+    }
+  }
+}
+
+@mixin loop-grid-columns($columns, $class, $type) {
+  @for $i from 0 through $columns {
+    @include calc-grid-column($i, $columns, $class, $type);
+  }
+}
+
+
+// Create grid for specific class
+@mixin make-grid($class, $columns: $grid-columns) {
+  // Add float:left to all grid selectors for this class.
+  @include float-grid-columns($class);
+  @include grid-ratios($class);
+
+  @include loop-grid-columns($columns, $class, width);
+  @include loop-grid-columns($columns, $class, pull);
+  @include loop-grid-columns($columns, $class, push);
+  @include loop-grid-columns($columns, $class, offset);
+}
+
+@mixin make-module-spacing($breakpoint) {
+  @each $size, $map in $module-spacing {
+    .module-spacing-#{$size} {
+      padding-bottom: map-get($map, $breakpoint);
+    }
+  }
+}
