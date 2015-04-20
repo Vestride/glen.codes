@@ -3,9 +3,11 @@
 {% block content %}
 <div class="container">
   <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-12">
       <h1>{{ title }}</h1>
-      {{ contents | safe }}
+      <div class="markdown-body">
+        {{ contents | safe }}
+      </div>
     </div>
   </div>
 </div>

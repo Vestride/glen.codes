@@ -27,6 +27,7 @@ gulp.task('css', function() {
 // trigger metalsmith to use the new templates.
 gulp.task('exec-metalsmith', function(done) {
   exec('node gulp/execute-metalsmith.js', function() {
+    // TODO reload livereload
     done();
   });
 });
@@ -46,8 +47,7 @@ gulp.task('build', ['posts', 'css']);
 
 // Watch for changes.
 gulp.task('watch', ['build'], function() {
-  gulp.watch(['templates/**/*.*'], ['exec-metalsmith']);
-  gulp.watch(['src/**/*.md'], ['posts']);
+  gulp.watch(['src/**/*.md', 'templates/**/*.*'], ['exec-metalsmith']);
   gulp.watch(['src/css/**/*.scss'], ['css']);
 });
 
