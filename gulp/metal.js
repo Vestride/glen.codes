@@ -29,6 +29,8 @@ renderer.code = function(code, lang, escaped) {
 // Translate marked languages to prism.
 var extensions = {
   js: 'javascript',
+  scss: 'css',
+  sass: 'css',
   html: 'markup',
   svg: 'markup',
   xml: 'markup',
@@ -47,7 +49,13 @@ module.exports = function(done) {
       renderer: renderer,
       langPrefix: 'language-',
       highlight: function(code, lang) {
-        lang = extensions[lang];
+        if (!prism.languages.hasOwnProperty(lang)) {
+          lang = extensions[lang];
+
+          if (!lang) {
+            lang = 'markup';
+          }
+        }
 
         return prism.highlight(code, prism.languages[lang]);
       }
