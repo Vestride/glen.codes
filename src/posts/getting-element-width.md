@@ -2,6 +2,7 @@
 title: Getting the Subpixel Width of an Element
 date: 2015-04-19
 template: post.swig
+codepen: true
 ---
 
 There are many ways to retrieve the size dimensions for an element with JavaScript. While working on [Shuffle](http://vestride.github.io/Shuffle/), I needed to get the subpixel width of some elements.
@@ -85,6 +86,14 @@ var getFloat = function(value) {
 ```
 
 First, we check if `getComputedStyle` is available (IE9+). If it's not, fall back to jQuery's `.css()`. Next, we retrieve the float value. Now in IE11 and other browsers which support the W3C spec, `padding` and `border` must be added to the `width` or `height`.
+
+---
+
+## Demo
+
+Here's a codepen demo with it all together. All the code is the same except I've replaced jQuery's `$.isNumeric`. I've made each column `33.33333%` width
+
+<p data-height="200" data-theme-id="14323" data-slug-hash="dobEWJ" data-default-tab="result" data-user="Vestride" class='codepen'>See the Pen <a href='http://codepen.io/Vestride/pen/dobEWJ/'>Getting the subpixel width of an element</a> by Glen Cheney (<a href='http://codepen.io/Vestride'>@Vestride</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
 ---
 

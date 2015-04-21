@@ -59,5 +59,7 @@
   <main role="main">
     {% block content %}{% endblock %}
   </main>
+  <footer></footer>
+  {% block scripts %}{% endblock %}
 </body>
 </html>
