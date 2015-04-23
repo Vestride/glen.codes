@@ -50,11 +50,8 @@ module.exports = function(done) {
       langPrefix: 'language-',
       highlight: function(code, lang) {
         if (!prism.languages.hasOwnProperty(lang)) {
-          lang = extensions[lang];
-
-          if (!lang) {
-            lang = 'markup';
-          }
+          // Default to markup.
+          lang = extensions[lang] || 'markup';
         }
 
         return prism.highlight(code, prism.languages[lang]);

@@ -5,13 +5,10 @@ var gulp = require('gulp');
 var connect = require('gulp-connect');
 var autoprefixer = require('gulp-autoprefixer');
 var sass = require('gulp-sass');
+var del = require('del');
 var metal = require('./gulp/metal');
 
-// Convert posts from markdown to a blog structure.
-gulp.task('posts', metal);
-
-// Compile sass and autoprefix.
-gulp.task('css', function() {
+function cssTask() {
   return gulp.src('src/css/**/*.scss')
     .pipe(sass())
     .on('error', function(err) {
@@ -20,14 +17,27 @@ gulp.task('css', function() {
     .pipe(autoprefixer())
     .pipe(gulp.dest('build/css/'))
     .pipe(connect.reload());
+}
+
+// Convert posts from markdown to a blog structure.
+gulp.task('posts', metal);
+gulp.task('posts--cleaned', ['clean'], metal);
+
+// Remove build files.
+gulp.task('clean', function(done) {
+  del(['build'], done);
 });
+
+// Compile sass and autoprefix.
+gulp.task('css', cssTask);
+gulp.task('css--cleaned', ['clean'], cssTask);
 
 // Run metalsmith without gulp. Otherwise any new templates will be ignored.
 // Starting and stopping the server and the watch (gaze) processes still don't
 // trigger metalsmith to use the new templates.
 gulp.task('exec-metalsmith', function(done) {
   exec('node gulp/execute-metalsmith.js', function() {
-    // TODO reload livereload
+    connect.reload();
     done();
   });
 });
@@ -43,7 +53,7 @@ gulp.task('server', ['watch'], function connectMe() {
 });
 
 // The whole thing.
-gulp.task('build', ['posts', 'css']);
+gulp.task('build', ['posts--cleaned', 'css--cleaned']);
 
 // Watch for changes.
 gulp.task('watch', ['build'], function() {
