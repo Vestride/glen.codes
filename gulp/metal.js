@@ -5,8 +5,13 @@ var metalsmith = require('metalsmith');
 var markdown = require('metalsmith-markdown');
 var templates = require('metalsmith-templates');
 var permalinks = require('metalsmith-permalinks');
+var collections = require('metalsmith-collections');
+// var branch = require('metalsmith-branch');
+var excerpts = require('metalsmith-excerpts');
 var marked = require('marked');
 var prism = require('prismjs');
+
+// https://azurelogic.com/posts/building-a-blog-with-metalsmith/
 
 var renderer = new marked.Renderer();
 
@@ -57,12 +62,20 @@ module.exports = function(done) {
         return prism.highlight(code, prism.languages[lang]);
       }
     }))
-    .use(templates({
-      engine: 'swig',
-      directory: 'templates'
+    .use(excerpts())
+    .use(collections({
+      posts: {
+        sortBy: 'published',
+        reverse: true,
+        refer: true
+      }
     }))
     .use(permalinks({
       pattern: ':title'
+    }))
+    .use(templates({
+      engine: 'swig',
+      directory: 'templates'
     }))
     .build(function(err) {
       if (err) {

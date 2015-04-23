@@ -1,6 +1,7 @@
 ---
 title: Getting the Subpixel Width of an Element
-date: 2015-04-19
+collection: posts
+published: 2015-04-19
 template: post.swig
 codepen: true
 ---

@@ -1,6 +1,7 @@
 ---
 title: Using Prism with Metalsmith and Markdown
-date: 2015-04-22
+collection: posts
+published: 2015-04-22
 template: post.swig
 ---
 
