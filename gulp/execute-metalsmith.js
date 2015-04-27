@@ -1,3 +1,5 @@
 #!/usr/bin/env node
 
-require('./metal')();
+var argv = require('yargs').argv;
+
+require('./metal')(!!argv.production);

@@ -29,5 +29,10 @@
     "metalsmith-templates": "^0.7.0",
     "prismjs": "git://github.com/LeaVerou/prism#gh-pages",
     "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "gulp-if": "^1.2.5",
+    "gulp-minify-css": "^1.1.0",
+    "yargs": "^3.8.0"
   }
 }

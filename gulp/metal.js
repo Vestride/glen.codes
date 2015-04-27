@@ -45,7 +45,7 @@ var extensions = {
   psm1: 'powershell'
 };
 
-module.exports = function(done) {
+module.exports = function(isProduction, done) {
   metalsmith(path.join(__dirname, '..'))
     .clean(false)
     .use(markdown({
@@ -75,7 +75,10 @@ module.exports = function(done) {
     }))
     .use(templates({
       engine: 'swig',
-      directory: 'templates'
+      directory: 'templates',
+      locals: {
+        isProduction: isProduction
+      }
     }))
     .build(function(err) {
       if (err) {

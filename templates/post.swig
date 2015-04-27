@@ -11,8 +11,18 @@
     </div>
   </div>
 </article>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div id="disqus_thread"></div>
+      <noscript>Enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
+  {% if isProduction %}<script async src="https://glencodes.disqus.com/embed.js"></script>{% endif %}
   {% if codepen %}<script async src="https://assets.codepen.io/assets/embed/ei.js"></script>{% endif %}
 {% endblock %}

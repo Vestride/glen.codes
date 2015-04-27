@@ -5,8 +5,13 @@ var gulp = require('gulp');
 var connect = require('gulp-connect');
 var autoprefixer = require('gulp-autoprefixer');
 var sass = require('gulp-sass');
+var gulpif = require('gulp-if');
+var minifyCss = require('gulp-minify-css');
 var del = require('del');
 var metal = require('./gulp/metal');
+var argv = require('yargs').argv;
+
+var isProduction = process.env.PORT || !!argv.production;
 
 function cssTask() {
   return gulp.src('src/css/**/*.scss')
@@ -15,13 +20,26 @@ function cssTask() {
       console.log(err);
     })
     .pipe(autoprefixer())
+    .pipe(gulpif(isProduction, minifyCss()))
     .pipe(gulp.dest('build/css/'))
-    .pipe(connect.reload());
+    .pipe(gulpif(!isProduction, connect.reload()));
+}
+
+function connectMe() {
+  connect.server({
+    root: ['build'],
+    port: process.env.PORT || 8888,
+    livereload: !isProduction
+  });
+}
+
+function metalsmith(done) {
+  metal(isProduction, done);
 }
 
 // Convert posts from markdown to a blog structure.
-gulp.task('posts', metal);
-gulp.task('posts--cleaned', ['clean'], metal);
+gulp.task('posts', metalsmith);
+gulp.task('posts--cleaned', ['clean'], metalsmith);
 
 // Remove build files.
 gulp.task('clean', function(done) {
@@ -42,23 +60,16 @@ gulp.task('exec-metalsmith', function(done) {
   });
 });
 
-// Run live reload server and watch for changes.
-gulp.task('server', ['watch'], function connectMe() {
-  var isLocal = !process.env.PORT;
-  connect.server({
-    root: ['build'],
-    port: process.env.PORT || 8888,
-    livereload: isLocal
-  });
-});
+gulp.task('server', ['build'], connectMe);
 
 // The whole thing.
 gulp.task('build', ['posts--cleaned', 'css--cleaned']);
 
-// Watch for changes.
+// Run live reload server and watch for changes.
 gulp.task('watch', ['build'], function() {
   gulp.watch(['src/**/*.md', 'templates/**/*.*'], ['exec-metalsmith']);
   gulp.watch(['src/css/**/*.scss'], ['css']);
+  connectMe();
 });
 
 // Run server when no task is specified.
