@@ -45,9 +45,8 @@ var mdOptions = {
 module.exports = function(isProduction, done) {
   metalsmith(path.join(__dirname, '..'))
     .metadata({
-      site: {
-        url: 'https://glen.codes'
-      }
+      githubSrc: 'https://github.com/Vestride/glen.codes/blob/master/',
+      url: 'https://glen.codes'
     })
     .clean(false)
     .use(markdown(mdOptions))

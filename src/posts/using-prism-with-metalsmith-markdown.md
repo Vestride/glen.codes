@@ -2,6 +2,7 @@
 title: Using Prism with Metalsmith and Markdown
 collection: posts
 published: 2015-04-22
+file_name: using-prism-with-metalsmith-markdown.md
 template: post.swig
 ---
 

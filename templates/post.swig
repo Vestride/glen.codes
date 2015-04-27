@@ -6,6 +6,8 @@
     <div class="row">
       <div class="col-sm-12">
         <h1>{{ title }}</h1>
+        <a class="edit-on-github" href="{{ githubSrc }}src/posts/{{ file_name }}">Edit on GitHub</a>
+        <time datetime="{{ published | date('Y-m-d') }}">{{ published | date('F j, Y') }}</time>
         <div class="markdown-body">
           {{ contents | safe }}
         </div>
