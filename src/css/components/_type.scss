@@ -1,10 +1,52 @@
+html {
+  font-family: get-font-family(lato);
+  color: get-color(gray);
+}
+
+a {
+  color: get-color(light-blue);
+  text-decoration: none;
+}
+
+a:visited {
+  color: get-color(purple);
+
+  html.new & {
+    color: get-color(light-blue);
+  }
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  color: get-color(dark-gray);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: get-color(dark-gray);
+
+  code {
+    color: inherit;
+  }
+}
+
+p {
+  margin: 1em 0;
+}
 
 .markdown-body {
   line-height: 1.6;
 }
 
 code {
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: get-font-family(code);
 }
 
 :not(pre) > code {
@@ -13,6 +55,7 @@ code {
   padding-bottom: 0.2em;
   margin: 0;
   font-size: 85%;
+  color: get-color(black);
   background-color: rgba(0,0,0,0.04);
   border-radius: 3px;
 
@@ -21,4 +64,11 @@ code {
     letter-spacing: -0.2em;
     content: "\00a0";
   }
+}
+
+
+// TODO doesn't really belong here
+.module > :last-child,
+.module > :last-child > :last-child {
+  margin-bottom: 0;
 }

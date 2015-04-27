@@ -8,28 +8,10 @@ var permalinks = require('metalsmith-permalinks');
 var collections = require('metalsmith-collections');
 // var branch = require('metalsmith-branch');
 var excerpts = require('metalsmith-excerpts');
-var marked = require('marked');
 var prism = require('prismjs');
+var renderer = require('./marked-renderer');
 
 // https://azurelogic.com/posts/building-a-blog-with-metalsmith/
-
-var renderer = new marked.Renderer();
-
-// Change the code method to output the same as Prism.js would.
-renderer.code = function(code, lang, escaped) {
-  code = this.options.highlight(code, lang);
-
-  if (!lang) {
-    return '<pre><code>' + code + '\n</code></pre>';
-  }
-
-  // e.g. "language-js"
-  var langClass = this.options.langPrefix + lang;
-
-  return '<pre class="' + langClass + '"><code class="' + langClass + '">' +
-    code +
-    '</code></pre>\n';
-};
 
 // Translate marked languages to prism.
 var extensions = {
@@ -45,23 +27,30 @@ var extensions = {
   psm1: 'powershell'
 };
 
+var mdOptions = {
+  gfm: true,
+  smartypants: true,
+  renderer: renderer,
+  langPrefix: 'language-',
+  highlight: function(code, lang) {
+    if (!prism.languages.hasOwnProperty(lang)) {
+      // Default to markup.
+      lang = extensions[lang] || 'markup';
+    }
+
+    return prism.highlight(code, prism.languages[lang]);
+  }
+};
+
 module.exports = function(isProduction, done) {
   metalsmith(path.join(__dirname, '..'))
-    .clean(false)
-    .use(markdown({
-      gfm: true,
-      smartypants: true,
-      renderer: renderer,
-      langPrefix: 'language-',
-      highlight: function(code, lang) {
-        if (!prism.languages.hasOwnProperty(lang)) {
-          // Default to markup.
-          lang = extensions[lang] || 'markup';
-        }
-
-        return prism.highlight(code, prism.languages[lang]);
+    .metadata({
+      site: {
+        url: 'https://glen.codes'
       }
-    }))
+    })
+    .clean(false)
+    .use(markdown(mdOptions))
     .use(excerpts())
     .use(collections({
       posts: {

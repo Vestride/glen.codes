@@ -25,6 +25,11 @@ function cssTask() {
     .pipe(gulpif(!isProduction, connect.reload()));
 }
 
+function assetsTask() {
+  return gulp.src('assets/**/*.*')
+    .pipe(gulp.dest('build/assets/'));
+}
+
 function connectMe() {
   connect.server({
     root: ['build'],
@@ -50,6 +55,9 @@ gulp.task('clean', function(done) {
 gulp.task('css', cssTask);
 gulp.task('css--cleaned', ['clean'], cssTask);
 
+gulp.task('assets', assetsTask);
+gulp.task('assets--cleaned', ['clean'], assetsTask);
+
 // Run metalsmith without gulp. Otherwise any new templates will be ignored.
 // Starting and stopping the server and the watch (gaze) processes still don't
 // trigger metalsmith to use the new templates.
@@ -63,7 +71,7 @@ gulp.task('exec-metalsmith', function(done) {
 gulp.task('server', ['build'], connectMe);
 
 // The whole thing.
-gulp.task('build', ['posts--cleaned', 'css--cleaned']);
+gulp.task('build', ['posts--cleaned', 'css--cleaned', 'assets--cleaned']);
 
 // Run live reload server and watch for changes.
 gulp.task('watch', ['build'], function() {

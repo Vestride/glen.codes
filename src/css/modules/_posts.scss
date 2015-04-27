@@ -1,0 +1,16 @@
+.post-list {
+
+}
+
+.post-list__post + .post-list__post {
+  margin-top: 2em;
+}
+
+.post-list__post-title {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  & + p {
+    margin-top: 0;
+  }
+}

@@ -2,7 +2,12 @@
 
 $colors: (
   black: #000000,
-  white: #FFFFFF
+  dark-gray: #34495e,
+  gray: #5d6d77,
+  light-blue: #3498db,
+  purple: #9b59b6,
+  code-background: #f5f2f0,
+  white: #ffffff
 );
 
 $breakpoints: (
@@ -13,7 +18,10 @@ $breakpoints: (
 );
 
 $font-families: (
-  lato: "'Lato'"
+  lato: "'Lato', 'Helvetica Neue', Helvetica, sans-serif",
+  helvetica-neue: "'Helvetica Neue', Helvetica, sans-serif",
+  helvetica-neue-light: "'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, sans-serif",
+  code: "Consolas, 'Liberation Mono', Menlo, Courier, monospace"
 );
 
 $z-layers: (
@@ -47,11 +55,12 @@ $grid-columns: 12;
 
 // Padding between columns. Gets divided in half for the left and right.
 $grid-gutter-width: 16px;
+$grid-max-width-mobile: 540px;
 $grid-max-width: 1200px;
 $grid-sizes: (xs, sm, md, lg);
 
 $grid-container-padding: (
-  xs: 3.25%,
+  xs: 2%,
   sm: 3.25%,
   md: 3.5%,
   lg: 3.5%

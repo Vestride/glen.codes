@@ -16,7 +16,7 @@
 .#{$grid-row} {
   margin-left: auto;
   margin-right: auto;
-  max-width: $grid-max-width;
+  max-width: $grid-max-width-mobile;
   @include clearfix();
 }
 
@@ -56,6 +56,10 @@
   .#{$grid-container} {
     padding-left: map-get($grid-container-padding, "sm");
     padding-right: map-get($grid-container-padding, "sm");
+  }
+
+  .#{$grid-row} {
+    max-width: $grid-max-width;
   }
 }
 
