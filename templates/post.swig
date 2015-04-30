@@ -1,7 +1,7 @@
 {% extends 'layout.swig' %}
 
 {% block content %}
-<article class="">
+<article class="post">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">

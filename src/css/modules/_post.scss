@@ -1,5 +1,27 @@
+.post {
+  overflow: hidden;
+}
+
 .code-block {
-  background-color: get-color(code-background);
+  position: relative;
+  overflow: visible;
+
+  pre {
+    position: relative;
+    z-index: 1;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 50%;
+    width: 100vw;
+    height: 100%;
+    margin-left: -50vw;
+    background-color: get-color(code-background);
+  }
 }
 
 .edit-on-github {

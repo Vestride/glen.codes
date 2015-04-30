@@ -4,30 +4,15 @@ var marked = require('marked');
 
 var renderer = new marked.Renderer();
 
-var gridOpen = '<div class="container"><div class="row">' +
-  '<div class="col-sm-12"><div class="markdown-body">';
-var gridClose = '</div></div></div></div>';
-var codeGridOpen = '<div class="code-block container"><div class="row">' +
-  '<div class="col-sm-12"><div class="markdown-body">';
-
 // Change the code method to output the same as Prism.js would.
 renderer.code = function(code, lang, escaped) {
   code = this.options.highlight(code, lang);
-
-  if (!lang) {
-    return '<pre><code>' + code + '\n</code></pre>';
-  }
-
   // e.g. "language-js"
-  var langClass = this.options.langPrefix + lang;
-
-  return gridClose +
-    codeGridOpen +
-    '<pre class="' + langClass + '"><code class="' + langClass + '">' +
-    code +
-    '</code></pre>' +
-    gridClose +
-    gridOpen;
+  var langClass = lang ? this.options.langPrefix + lang : '';
+  var open = '<div class="code-block"><pre class="' + langClass + '">' +
+    '<code class="' + langClass + '">';
+  var close = '</code></pre></div>';
+  return open + code + close;
 };
 
 renderer.heading = function(text, level, raw) {
