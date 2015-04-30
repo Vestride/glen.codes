@@ -8,6 +8,26 @@ a {
   text-decoration: none;
 }
 
+p a {
+  position: relative;
+  display: inline-block;
+  vertical-align: bottom;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-color: hsl(0, 0%, 90%);
+    transition: transform 180ms ease-out;
+    transform: translateY(95%);
+  }
+}
+
 a:visited {
   color: get-color(purple);
 
@@ -16,8 +36,13 @@ a:visited {
   }
 }
 
-a:hover {
-  text-decoration: underline;
+p a:hover,
+p a:focus {
+  outline: none;
+
+  &::after {
+    transform: translateY(0);
+  }
 }
 
 a:active {
@@ -31,6 +56,35 @@ h4,
 h5,
 h6 {
   color: get-color(dark-gray);
+
+  a {
+    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 2px;
+      background-color: hsl(0, 0%, 90%);
+      transition: transform 180ms ease-out;
+      transform: translateX(-100%);
+    }
+  }
+
+  a:hover,
+  a:focus {
+    outline: none;
+
+    &::after {
+      transform: translateX(0);
+    }
+  }
 
   code {
     color: inherit;

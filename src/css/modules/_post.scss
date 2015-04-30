@@ -1,3 +1,20 @@
 .code-block {
   background-color: get-color(code-background);
 }
+
+.edit-on-github {
+  display: inline-block;
+  padding: 2px 8px 2px 26px;
+  background-color: get-color(light-gray);
+  background-image: url(/assets/github-mark.svg);
+  background-size: 16px;
+  background-position: 6px 48%;
+  background-repeat: no-repeat;
+  border-radius: 3px;
+  color: get-color(dark-gray);
+
+  &:hover,
+  &:focus {
+    background-color: darken(get-color(light-gray), 5%);
+  }
+}
