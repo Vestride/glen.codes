@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h1>{{ title }}</h1>
+        <h1 class="post__title">{{ title }}</h1>
         <div>
           <p>
             Published <time datetime="{{ published | date('Y-m-d') }}">{{ published | date('F j, Y') }}</time>

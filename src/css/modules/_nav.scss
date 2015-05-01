@@ -1,4 +1,52 @@
 .page-header {
-  border-bottom: 1px solid get-color(gray);
   background-color: get-color(light-gray);
+}
+
+.page-nav {
+  display: flex;
+  align-items: center;
+}
+
+.page-nav__link + .page-nav__link {
+  margin-left: .5rem;
+}
+
+.page-nav__link {
+  padding: .5rem 0;
+
+  &:visited {
+    color: get-color(light-blue);
+  }
+
+  &:hover {
+    color: get-color(odopink);
+
+    svg > * {
+      fill: get-color(odopink);
+    }
+  }
+
+  svg,
+  .page-nav__link-text {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  svg > *,
+  .page-nav__link-text {
+    transition: 100ms ease-out;
+  }
+}
+
+@include breakpoint(sm) {
+
+  .page-nav__link svg {
+    width: 32px;
+    height: 32px;
+  }
 }

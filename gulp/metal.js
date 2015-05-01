@@ -10,6 +10,7 @@ var collections = require('metalsmith-collections');
 var excerpts = require('metalsmith-excerpts');
 var prism = require('prismjs');
 var renderer = require('./marked-renderer');
+var pkg = require(path.join(__dirname, '../package.json'));
 
 // https://azurelogic.com/posts/building-a-blog-with-metalsmith/
 
@@ -46,7 +47,11 @@ module.exports = function(isProduction, done) {
   metalsmith(path.join(__dirname, '..'))
     .metadata({
       githubSrc: 'https://github.com/Vestride/glen.codes/blob/master/',
-      url: 'https://glen.codes'
+      site: {
+        url: 'https://glen.codes',
+        name: pkg.name,
+        description: pkg.description
+      }
     })
     .clean(false)
     .use(markdown(mdOptions))

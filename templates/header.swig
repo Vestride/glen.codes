@@ -1,9 +1,9 @@
-<header class="page-header">
+<header class="page-header" role="banner" aria-label="main navigation">
   <div class="container">
     <div class="row">
-      <div class="col-sm-12">
-        Foo
-      </div>
+      <nav class="col-sm-12 page-nav" role="naviation">
+        <a class="page-nav__link" href="/">{%- include '../assets/g.svg' -%}<span class="page-nav__link-text">glen.codes</span></a>
+      </nav>
     </div>
   </div>
 </header>

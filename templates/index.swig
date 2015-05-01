@@ -2,9 +2,15 @@
 
 {% block content %}
 <div class="container">
+  <div class="row site-intro">
+    <div class="col-sm-10">
+      <h1 class="site-intro__title"><span>{{ site.name }}</span></h1>
+      <p class="site-intro__description">{{ site.description | replace("'", "&rsquo;", "g") | safe }}</p>
+    </div>
+  </div>
   <div class="row">
     <div class="col-sm-4 col-sm-push-8 col-md-3">
-      <div class="about-me module">
+      <aside class="about-me module" role="complementary">
         <div class="about-me__photo">
           <img srcset="/assets/glen-175w.jpg 175w,
             /assets/glen-300w.jpg 300w,
@@ -19,7 +25,7 @@
           <p class="marginless">I&rsquo;m a front-end developer at <a href="http://nurun.com">Nurun</a> in San Francisco.</p>
           <p class="marginless">You can find me on <a href="https://github.com/Vestride">GitHub</a>, <a href="https://twitter.com/Vestride">Twitter</a>, and <a href="http://codepen.io/Vestride/">CodePen</a> as Vestride.</p>
         </div>
-      </div>
+      </aside>
     </div>
     <div class="col-sm-8 col-sm-pull-4 col-md-7 col-md-pull-3">
       <section class="post-list">

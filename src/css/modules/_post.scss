@@ -2,6 +2,10 @@
   overflow: hidden;
 }
 
+.post__title {
+  margin-top: -.25em;
+}
+
 .code-block {
   position: relative;
   overflow: visible;
@@ -82,7 +86,11 @@
   background-position: 6px 48%;
   background-repeat: no-repeat;
   border-radius: 3px;
-  color: get-color(dark-gray);
+
+  &,
+  &:visited {
+    color: get-color(dark-gray);
+  }
 
   &:hover,
   &:focus {

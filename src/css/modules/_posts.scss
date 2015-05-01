@@ -1,3 +1,36 @@
+.site-intro__title {
+  margin-top: -.25em;
+  margin-bottom: 0;
+  font-family: get-font-family(code);
+
+}
+
+.site-intro__title::after {
+  content: "|";
+  animation: cursor-blink 0.8s linear infinite;
+  color: get-color(dark-gray);
+  margin-left: -4px;
+}
+
+@keyframes cursor-blink {
+  1% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.site-intro__description {
+  margin-top: 0;
+}
+
 .post-list {
 
 }

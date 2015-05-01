@@ -2,7 +2,7 @@
   "name": "glen.codes",
   "version": "0.1.0",
   "private": true,
-  "description": "Glen Cheney's Frontend Development Blog",
+  "description": "Glen Cheney's development blog.",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
