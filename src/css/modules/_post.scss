@@ -5,22 +5,71 @@
 .code-block {
   position: relative;
   overflow: visible;
+  margin-left: calc(-2vw - #{($grid-gutter-width / 2)});
+  margin-right: calc(-2vw - #{($grid-gutter-width / 2)});
 
   pre {
     position: relative;
     z-index: 1;
+    padding-left: calc(2vw + #{($grid-gutter-width / 2)});
+    padding-right: calc(2vw + #{($grid-gutter-width / 2)});
   }
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    top: 0;
-    left: 50%;
-    width: 100vw;
-    height: 100%;
-    margin-left: -50vw;
-    background-color: get-color(code-background);
+@media (min-width: $viewport-at-max-mobile-grid-width)
+  and (max-width: map-get($breakpoints, sm) - 1px) {
+
+  .code-block {
+    margin-left: calc(((100vw - #{$grid-max-width-mobile}) / -2) - #{$grid-gutter-width / 2});
+    margin-right: calc(((100vw - #{$grid-max-width-mobile}) / -2) - #{$grid-gutter-width / 2});
+
+    pre {
+      padding-left: calc(((100vw - #{$grid-max-width-mobile}) / 2) + #{$grid-gutter-width / 2});
+      padding-right: calc(((100vw - #{$grid-max-width-mobile}) / 2) + #{$grid-gutter-width / 2});
+    }
+  }
+}
+
+@include breakpoint(sm) {
+
+  .code-block {
+    margin-left: calc(-3.25vw - #{($grid-gutter-width / 2)});
+    margin-right: calc(-3.25vw - #{($grid-gutter-width / 2)});
+
+    pre {
+      position: relative;
+      z-index: 1;
+      padding-left: calc(3.25vw + #{($grid-gutter-width / 2)});
+      padding-right: calc(3.25vw + #{($grid-gutter-width / 2)});
+    }
+  }
+}
+
+@include breakpoint(md) {
+
+  .code-block {
+    margin-left: calc(-3.5vw - #{($grid-gutter-width / 2)});
+    margin-right: calc(-3.5vw - #{($grid-gutter-width / 2)});
+
+    pre {
+      position: relative;
+      z-index: 1;
+      padding-left: calc(3.5vw + #{($grid-gutter-width / 2)});
+      padding-right: calc(3.5vw + #{($grid-gutter-width / 2)});
+    }
+  }
+}
+
+@media (min-width: $viewport-at-max-grid-width) {
+
+  .code-block {
+    margin-left: calc(((100vw - #{$grid-max-width}) / -2) - #{$grid-gutter-width / 2});
+    margin-right: calc(((100vw - #{$grid-max-width}) / -2) - #{$grid-gutter-width / 2});
+
+    pre {
+      padding-left: calc(((100vw - #{$grid-max-width}) / 2) + #{$grid-gutter-width / 2});
+      padding-right: calc(((100vw - #{$grid-max-width}) / 2) + #{$grid-gutter-width / 2});
+    }
   }
 }
 

@@ -126,3 +126,12 @@ code {
 .module > :last-child > :last-child {
   margin-bottom: 0;
 }
+
+
+@include breakpoint(sm, true) {
+
+  code[class*="language-"],
+  pre[class*="language-"] {
+    font-size: .875em;
+  }
+}

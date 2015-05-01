@@ -69,9 +69,11 @@ $grid-container-padding: (
 
 // 0.035
 $_grid-padding-pct: (strip-units(map-get($grid-container-padding, "md")) / 100);
+$_grid-padding-mobile-pct: (strip-units(map-get($grid-container-padding, "xs")) / 100);
 
 // Size of the window when the grid row has hit max-width.
-$viewport-at-max-grid-width: round($grid-max-width / (1 - $_grid-padding-pct * 2));
+$viewport-at-max-grid-width: round($grid-max-width * (1 + $_grid-padding-pct * 2));
+$viewport-at-max-mobile-grid-width: round($grid-max-width-mobile * (1 + ($_grid-padding-mobile-pct * 2)));
 
 // Padding at the max grid width.
 $grid-max-container-padding: round($_grid-padding-pct * $viewport-at-max-grid-width);

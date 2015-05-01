@@ -9,10 +9,11 @@
   {% include "./smile.swig" %}
 </head>
 <body>
+  {% include 'header.swig' %}
   <main role="main">
     {% block content %}{% endblock %}
   </main>
-  <footer></footer>
+  {% include 'footer.swig' %}
   {% block scripts %}{% endblock %}
 </body>
 </html>

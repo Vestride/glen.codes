@@ -1,3 +1,15 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
 img {
   display: block;
   max-width: 100%;
