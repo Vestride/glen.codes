@@ -7,9 +7,11 @@
 
 .site-intro__title::after {
   content: "|";
+  position: relative;
+  top: -4px;
+  margin-left: -4px;
   animation: cursor-blink 0.8s linear infinite;
   color: get-color(dark-gray);
-  margin-left: -4px;
 }
 
 @keyframes cursor-blink {
