@@ -2,14 +2,14 @@
   margin-top: -.25em;
   margin-bottom: 0;
   font-family: get-font-family(code);
-
+  font-size: 3em;
 }
 
 .site-intro__title::after {
   content: "|";
   position: relative;
-  top: -4px;
-  margin-left: -4px;
+  top: -.125em;
+  margin-left: -.125em;
   animation: cursor-blink 0.8s linear infinite;
   color: get-color(dark-gray);
 }
@@ -47,5 +47,12 @@
 
   & + p {
     margin-top: 0;
+  }
+}
+
+@include breakpoint(sm, true) {
+
+  .site-intro__title {
+    font-size: 2em;
   }
 }
