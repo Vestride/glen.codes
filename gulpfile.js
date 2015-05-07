@@ -1,8 +1,11 @@
 'use strict';
 
 var exec = require('child_process').exec;
+var connect = require('connect');
+var serveStatic = require('serve-static');
+var redirect = require('redirecter');
 var gulp = require('gulp');
-var connect = require('gulp-connect');
+var gulpConnect = require('gulp-connect');
 var autoprefixer = require('gulp-autoprefixer');
 var sass = require('gulp-sass');
 var gulpif = require('gulp-if');
@@ -22,7 +25,7 @@ function cssTask() {
     .pipe(autoprefixer())
     .pipe(gulpif(isProduction, minifyCss()))
     .pipe(gulp.dest('build/css/'))
-    .pipe(gulpif(!isProduction, connect.reload()));
+    .pipe(gulpif(!isProduction, gulpConnect.reload()));
 }
 
 function assetsTask() {
@@ -31,11 +34,32 @@ function assetsTask() {
 }
 
 function connectMe() {
-  connect.server({
-    root: ['build'],
-    port: process.env.PORT || 8888,
-    livereload: !isProduction
-  });
+  var port = process.env.PORT || 8888;
+  if (isProduction) {
+    var app = connect();
+
+    // Redirect requests to herokuapp.com to custom domain.
+    app.use(function handleRequest(req, res, next) {
+      if (req.headers.host === 'glencodes.herokuapp.com') {
+        redirect(req, res, {
+          target: 'https://glen.codes' + req.url,
+          statusCode: 301
+        });
+      } else {
+        next();
+      }
+    });
+
+    // Serve from /build
+    app.use(serveStatic(__dirname + '/build'));
+    app.listen(port);
+  } else {
+    gulpConnect.server({
+      root: ['build'],
+      port: port,
+      livereload: true
+    });
+  }
 }
 
 function metalsmith(done) {
@@ -63,7 +87,7 @@ gulp.task('assets--cleaned', ['clean'], assetsTask);
 // trigger metalsmith to use the new templates.
 gulp.task('exec-metalsmith', function(done) {
   exec('node gulp/execute-metalsmith.js', function() {
-    connect.reload();
+    gulpConnect.reload();
     done();
   });
 });
