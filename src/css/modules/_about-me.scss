@@ -7,6 +7,10 @@
   width: 30%;
   margin-right: 1em;
 
+  img {
+    width: 100%;
+  }
+
   @media (width: 320px) {
     width: 29%;
   }

@@ -12,13 +12,15 @@
     <div class="col-sm-4 col-sm-push-8 col-md-3">
       <aside class="about-me module" role="complementary">
         <div class="about-me__photo">
-          <img srcset="/assets/glen-175w.jpg 175w,
-            /assets/glen-300w.jpg 300w,
-            /assets/glen-400w.jpg 400w,
-            /assets/glen-600w.jpg 600w"
-            sizes="(min-width: 1290px) 300px, (min-width: 1016px) 22vw, (min-width: 760px) 29vw, 28vw"
-            src="/assets/glen-600w.jpg"
-            alt="A photo of Glen Cheney smiling while sitting in a restaurant." />
+          <div class="aspect">
+            <img srcset="/assets/glen-175w.jpg 175w,
+              /assets/glen-300w.jpg 300w,
+              /assets/glen-400w.jpg 400w,
+              /assets/glen-600w.jpg 600w"
+              sizes="(min-width: 1290px) 300px, (min-width: 1016px) 22vw, (min-width: 760px) 29vw, 28vw"
+              src="/assets/glen-600w.jpg"
+              alt="A photo of Glen Cheney smiling while sitting in a restaurant." />
+          </div>
         </div>
         <div class="about-me__hello">
           <p class="marginless">Hey, I&rsquo;m <a href="https://glencheney.com">Glen Cheney</a>.</p>

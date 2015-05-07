@@ -8,7 +8,7 @@
               {%- include '../assets/pencil.svg' -%}
             {%- else %}
               {%- include '../assets/code.svg' -%}
-            {%- endif %} with {% include '../assets/heart.svg' %} by <span class="me">Glen Cheney</span>
+            {%- endif %}&#32;with&#32;{% include '../assets/heart.svg' %}&#32;by&#32;<span class="me">Glen Cheney</span>
           </a>
         </nav>
       </div>

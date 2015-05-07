@@ -4,12 +4,14 @@ var exec = require('child_process').exec;
 var connect = require('connect');
 var serveStatic = require('serve-static');
 var redirect = require('redirecter');
+var compression = require('compression');
 var gulp = require('gulp');
 var gulpConnect = require('gulp-connect');
 var autoprefixer = require('gulp-autoprefixer');
 var sass = require('gulp-sass');
 var gulpif = require('gulp-if');
 var minifyCss = require('gulp-minify-css');
+var minifyHtml = require('gulp-minify-html');
 var del = require('del');
 var metal = require('./gulp/metal');
 var argv = require('yargs').argv;
@@ -50,8 +52,22 @@ function connectMe() {
       }
     });
 
+    app.use(compression());
+
     // Serve from /build
-    app.use(serveStatic(__dirname + '/build'));
+    app.use(serveStatic(__dirname + '/build', {
+      maxAge: '2 weeks',
+      setHeaders: function setCustomCacheControl(res, path) {
+        var mime = serveStatic.mime.lookup(path);
+        var age = 1209600;
+
+        if (mime === 'text/html') {
+          age = 0;
+        }
+
+        res.setHeader('Cache-Control', 'public, max-age=' + age);
+      }
+    }));
     app.listen(port);
   } else {
     gulpConnect.server({
@@ -92,10 +108,16 @@ gulp.task('exec-metalsmith', function(done) {
   });
 });
 
+gulp.task('minify-html', ['posts--cleaned'], function() {
+  return gulp.src('./build/**/*.html')
+    .pipe(minifyHtml())
+    .pipe(gulp.dest('./build/'));
+});
+
 gulp.task('server', ['build'], connectMe);
 
 // The whole thing.
-gulp.task('build', ['posts--cleaned', 'css--cleaned', 'assets--cleaned']);
+gulp.task('build', ['posts--cleaned', 'css--cleaned', 'assets--cleaned', 'minify-html']);
 
 // Run live reload server and watch for changes.
 gulp.task('watch', ['build'], function() {
