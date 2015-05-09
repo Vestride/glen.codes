@@ -1,5 +1,7 @@
 {% extends 'layout.swig' %}
 
+{% block title %}{{ title }} &ndash; Glen Codes{% endblock %}
+
 {% block content %}
 <article class="post">
   <div class="container">
