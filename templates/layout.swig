@@ -2,10 +2,20 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="author" content="Glen Cheney" />
+  <meta name="theme-color" content="#3498db">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{% block title %}Glen Codes{% endblock %}</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+  <meta property="og:site_name" content="glen.codes" />
+  {% block open_graph %}
+  <meta property="og:url" content="{{ site.url }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Glen Codes" />
+  <meta property="og:description" content="{{ site.description }}" />
+  {% if site.og_image %}<meta property="og:image" content="{{ site.og_image }}" />{% endif %}
+  {%- endblock %}
 </head>
 <body>
   {% include 'header.swig' %}

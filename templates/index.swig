@@ -32,10 +32,10 @@
     <div class="col-sm-8 col-sm-pull-4 col-md-7 col-md-pull-3">
       <section class="post-list">
         {% for post in posts %}
-          <article class="post-list__post module">
-            <h2 class="post-list__post-title"><a href="/{{ post.path }}/">{{ post.title }}</a></h2>
-            <p>Published on <time datetime="{{ post.published | date('Y-m-d') }}">{{ post.published | date('F j, Y') }}</time></p>
-            {{ post.excerpt | safe }}
+          <article class="post-list__post module" itemscope itemType="http://schema.org/BlogPosting">
+            <h2 class="post-list__post-title" itemprop="headline"><a href="/{{ post.path }}/">{{ post.title }}</a></h2>
+            <p>Published on <time datetime="{{ post.published | date('Y-m-d') }}" itemprop="datePublished">{{ post.published | date('F j, Y') }}</time></p>
+            <div itemprop="description">{{ post.excerpt | safe }}</div>
           </article>
         {% endfor %}
       </section>
