@@ -12,6 +12,8 @@ var sass = require('gulp-sass');
 var gulpif = require('gulp-if');
 var minifyCss = require('gulp-minify-css');
 var minifyHtml = require('gulp-minify-html');
+var rename = require('gulp-rename');
+var svgmin = require('gulp-svgmin');
 var del = require('del');
 var metal = require('./gulp/metal');
 var argv = require('yargs').argv;
@@ -30,7 +32,14 @@ function cssTask() {
     .pipe(gulpif(!isProduction, gulpConnect.reload()));
 }
 
-function assetsTask() {
+function logoTask() {
+  return gulp.src('assets/g.svg')
+    .pipe(rename('g-optimized.svg'))
+    .pipe(svgmin())
+    .pipe(gulp.dest('./build/assets/'));
+}
+
+function copyAssets() {
   return gulp.src('assets/**/*.*')
     .pipe(gulp.dest('build/assets/'));
 }
@@ -82,6 +91,16 @@ function metalsmith(done) {
   metal(isProduction, done);
 }
 
+// Run metalsmith without gulp. Otherwise any new templates will be ignored.
+// Starting and stopping the server and the watch (gaze) processes still don't
+// trigger metalsmith to use the new templates.
+function execMetalsmith(done) {
+  exec('node gulp/execute-metalsmith.js', function() {
+    gulpConnect.reload();
+    done();
+  });
+}
+
 // Convert posts from markdown to a blog structure.
 gulp.task('posts', metalsmith);
 gulp.task('posts--cleaned', ['clean'], metalsmith);
@@ -95,18 +114,14 @@ gulp.task('clean', function(done) {
 gulp.task('css', cssTask);
 gulp.task('css--cleaned', ['clean'], cssTask);
 
-gulp.task('assets', assetsTask);
-gulp.task('assets--cleaned', ['clean'], assetsTask);
+gulp.task('logo', logoTask);
+gulp.task('logo--cleaned', ['clean'], logoTask);
 
-// Run metalsmith without gulp. Otherwise any new templates will be ignored.
-// Starting and stopping the server and the watch (gaze) processes still don't
-// trigger metalsmith to use the new templates.
-gulp.task('exec-metalsmith', function(done) {
-  exec('node gulp/execute-metalsmith.js', function() {
-    gulpConnect.reload();
-    done();
-  });
-});
+gulp.task('assets', ['logo'], copyAssets);
+gulp.task('assets--cleaned', ['clean', 'logo--cleaned'], copyAssets);
+gulp.task('assets-and-templates', ['assets'], execMetalsmith);
+
+gulp.task('exec-metalsmith', execMetalsmith);
 
 gulp.task('minify-html', ['posts--cleaned'], function() {
   return gulp.src('./build/**/*.html')
@@ -123,6 +138,8 @@ gulp.task('build', ['posts--cleaned', 'css--cleaned', 'assets--cleaned', 'minify
 gulp.task('watch', ['build'], function() {
   gulp.watch(['src/**/*.md', 'templates/**/*.*'], ['exec-metalsmith']);
   gulp.watch(['src/css/**/*.scss'], ['css']);
+  gulp.watch(['!assets/*.svg', 'assets/*'], ['assets']);
+  gulp.watch(['assets/*.svg'], ['assets-and-templates']);
   connectMe();
 });
 
