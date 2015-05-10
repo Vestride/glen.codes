@@ -5,7 +5,7 @@
   <div class="row site-intro">
     <div class="col-sm-10">
       <h1 class="site-intro__title"><span>{{ site.name }}</span></h1>
-      <p class="site-intro__description">{{ site.description | replace("'", "&rsquo;", "g") | safe }}</p>
+      <p class="site-intro__description">{{ site.description | safe }}</p>
     </div>
   </div>
   <div class="row">
@@ -34,7 +34,7 @@
         {% for post in posts %}
           <article class="post-list__post module" itemscope itemType="http://schema.org/BlogPosting">
             <h2 class="post-list__post-title" itemprop="headline"><a href="/{{ post.path }}/">{{ post.title }}</a></h2>
-            <p>Published on <time datetime="{{ post.published | date('Y-m-d') }}" itemprop="datePublished">{{ post.published | date('F j, Y') }}</time></p>
+            <p>Published on&#32;<time datetime="{{ post.published | date('Y-m-d') }}" itemprop="datePublished">{{ post.published | date('F j, Y') }}</time></p>
             <div itemprop="description">{{ post.excerpt | safe }}</div>
           </article>
         {% endfor %}

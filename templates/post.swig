@@ -18,11 +18,11 @@
         <h1 class="post__title" itemprop="headline">{{ title }}</h1>
         <div>
           <p>
-            Published <time datetime="{{ published | date('Y-m-d') }}" itemprop="datePublished">{{ published | date('F j, Y') }}</time>
+            Published&#32;<time datetime="{{ published | date('Y-m-d') }}" itemprop="datePublished">{{ published | date('F j, Y') }}</time>
           </p>
           {% if updated %}
             <p>
-              Updated <time datetime="{{ updated | date('Y-m-d') }}" itemprop="dateModified">{{ updated | date('F j, Y') }}</time>
+              Updated&#32;<time datetime="{{ updated | date('Y-m-d') }}" itemprop="dateModified">{{ updated | date('F j, Y') }}</time>
             </p>
           {% endif %}
           <a class="edit-on-github" href="{{ githubSrc }}src/posts/{{ file_name }}" target="_blank">Edit on GitHub</a>

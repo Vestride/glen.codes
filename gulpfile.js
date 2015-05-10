@@ -87,6 +87,12 @@ function connectMe() {
   }
 }
 
+function minifyHtmlTask() {
+  return gulp.src('build/**/*.html')
+    .pipe(minifyHtml())
+    .pipe(gulp.dest('build/'));
+}
+
 function metalsmith(done) {
   metal(isProduction, done);
 }
@@ -119,24 +125,21 @@ gulp.task('logo--cleaned', ['clean'], logoTask);
 
 gulp.task('assets', ['logo'], copyAssets);
 gulp.task('assets--cleaned', ['clean', 'logo--cleaned'], copyAssets);
-gulp.task('assets-and-templates', ['assets'], execMetalsmith);
 
+gulp.task('assets-and-templates', ['assets'], execMetalsmith);
 gulp.task('exec-metalsmith', execMetalsmith);
 
-gulp.task('minify-html', ['posts--cleaned'], function() {
-  return gulp.src('./build/**/*.html')
-    .pipe(minifyHtml())
-    .pipe(gulp.dest('./build/'));
-});
+gulp.task('minify-html--cleaned', ['posts--cleaned'], minifyHtmlTask);
+gulp.task('metalsmith-and-minify-html', ['exec-metalsmith'], minifyHtmlTask);
 
 gulp.task('server', ['build'], connectMe);
 
 // The whole thing.
-gulp.task('build', ['posts--cleaned', 'css--cleaned', 'assets--cleaned', 'minify-html']);
+gulp.task('build', ['posts--cleaned', 'css--cleaned', 'assets--cleaned', 'minify-html--cleaned']);
 
 // Run live reload server and watch for changes.
 gulp.task('watch', ['build'], function() {
-  gulp.watch(['src/**/*.md', 'templates/**/*.*'], ['exec-metalsmith']);
+  gulp.watch(['src/**/*.md', 'templates/**/*.*'], ['metalsmith-and-minify-html']);
   gulp.watch(['src/css/**/*.scss'], ['css']);
   gulp.watch(['!assets/*.svg', 'assets/*'], ['assets']);
   gulp.watch(['assets/*.svg'], ['assets-and-templates']);
