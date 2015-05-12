@@ -44,6 +44,11 @@ function copyAssets() {
     .pipe(gulp.dest('build/assets/'));
 }
 
+function topLevelTask() {
+  return gulp.src('top-level/*')
+    .pipe(gulp.dest('build/'));
+}
+
 function connectMe() {
   var port = process.env.PORT || 8888;
   if (isProduction) {
@@ -123,8 +128,11 @@ gulp.task('css--cleaned', ['clean'], cssTask);
 gulp.task('logo', logoTask);
 gulp.task('logo--cleaned', ['clean'], logoTask);
 
-gulp.task('assets', ['logo'], copyAssets);
-gulp.task('assets--cleaned', ['clean', 'logo--cleaned'], copyAssets);
+gulp.task('top-level', topLevelTask);
+gulp.task('top-level--cleaned', ['clean'], topLevelTask);
+
+gulp.task('assets', ['logo', 'top-level'], copyAssets);
+gulp.task('assets--cleaned', ['clean', 'logo--cleaned', 'top-level--cleaned'], copyAssets);
 
 gulp.task('assets-and-templates', ['assets'], execMetalsmith);
 gulp.task('exec-metalsmith', execMetalsmith);

@@ -30,11 +30,11 @@
     }
 
     .polygon__shape:nth-child(3) {
-      fill: hsl(335, 62%, 60%);
+      fill: hsl(335, 62%, 36%);
     }
 
     .polygon__shape:nth-child(4) {
-      fill: hsl(335, 76%, 40%);
+      fill: hsl(335, 76%, 38%);
     }
 
     .polygon__shape:nth-child(5) {
@@ -42,15 +42,15 @@
     }
 
     .polygon__shape:nth-child(6) {
-      fill: hsl(335, 46%, 45%);
+      fill: hsl(335, 71%, 58%);
     }
 
     .polygon__shape:nth-child(7) {
-      fill: hsl(335, 50%, 70%);
+      fill: darken(get-color(odopink), 6%);
     }
 
     .polygon__shape:nth-child(8) {
-      fill: lighten(get-color(odopink), 10%);
+      fill: hsl(335, 70%, 55%);
     }
 
     .polygon__shape:nth-child(9) {
@@ -58,15 +58,11 @@
     }
 
     .polygon__shape:nth-child(10) {
-      fill: lighten(get-color(odopink), 12%);
+      fill: hsl(335, 61%, 48%);
     }
 
     .polygon__shape:nth-child(11) {
       fill: darken(get-color(odopink), 10%);
-    }
-
-    .polygon__shape.cutout {
-      fill: get-color(light-gray);
     }
   }
 
@@ -84,10 +80,6 @@
   .polygon__shape,
   .page-nav__link-text {
     transition: 100ms ease-out;
-  }
-
-  .polygon__shape.cutout {
-    fill: get-color(light-gray);
   }
 }
 

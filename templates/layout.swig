@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="author" content="Glen Cheney" />
@@ -16,6 +16,11 @@
   <meta property="og:description" content="{{ site.description }}" />
   {% if site.og_image %}<meta property="og:image" content="{{ site.og_image }}" />{% endif %}
   {%- endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
 </head>
 <body>
   {% include 'header.swig' %}
