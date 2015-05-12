@@ -8,7 +8,7 @@
   <title>{% block title %}Glen Codes{% endblock %}</title>
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  {% if isProduction %}<link rel="dns-prefetch" href="https://www.google-analytics.com">{% endif %}
   {% if isProduction and published %}<link rel="dns-prefetch" href="https://glencodes.disqus.com"></script>{% endif %}
   {% if isProduction and published %}<link rel="dns-prefetch" href="https://a.disquscdn.com"></script>{% endif %}
   {% if codepen %}<link rel="dns-prefetch" href="https://assets.codepen.io"></script>{% endif %}

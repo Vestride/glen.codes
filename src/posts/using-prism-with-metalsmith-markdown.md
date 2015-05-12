@@ -6,7 +6,9 @@ file_name: using-prism-with-metalsmith-markdown.md
 template: post.swig
 ---
 
-This site is built on [Metalsmith](http://www.metalsmith.io/). I write posts in markdown and use [metalsmith-markdown](https://github.com/segmentio/metalsmith-markdown) (which is a wrapper for [marked](https://github.com/chjj/marked)) to convert them to static html. By default, code blocks in marked are only put inside a `<pre><code></code></pre>` block without any syntax highlighting. I, and many others, love using [Prism](http://prismjs.com/) to highlight code and I wanted to use it with marked.
+I, and many others, love using [Prism](http://prismjs.com/) to highlight code and I wanted to add syntax highlighting with Prism to this blog.
+
+This site is built on [Metalsmith](http://www.metalsmith.io/). I write posts in markdown and use [metalsmith-markdown](https://github.com/segmentio/metalsmith-markdown) (which is a wrapper for [marked](https://github.com/chjj/marked)) to convert them to static html. By default, code blocks in marked are only put inside a `<pre><code></code></pre>` block without any syntax highlighting.
 
 Here's a basic setup for metalsmith which only converts markdown files.
 

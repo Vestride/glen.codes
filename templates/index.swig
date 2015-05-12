@@ -34,7 +34,7 @@
         {% for post in posts %}
           <article class="post-list__post module" itemscope itemType="http://schema.org/BlogPosting">
             <h2 class="post-list__post-title" itemprop="headline"><a href="/{{ post.path }}/">{{ post.title }}</a></h2>
-            <p>Published on&#32;<time datetime="{{ post.published | date('Y-m-d') }}" itemprop="datePublished">{{ post.published | date('F j, Y') }}</time></p>
+            <p><small>Published on&#32;<time datetime="{{ post.published | date('Y-m-d') }}" itemprop="datePublished">{{ post.published | date('F j, Y') }}</time></small></p>
             <div itemprop="description">{{ post.excerpt | safe }}</div>
           </article>
         {% endfor %}
