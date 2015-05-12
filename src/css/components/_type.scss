@@ -1,6 +1,10 @@
 html {
   font-family: get-font-family(lato);
   color: get-color(gray);
+
+  // Safari 8 has a flickering text issue with the cool link hovers. Either
+  // the hovers are removed, or everybody gets font-smoothing...
+  @include font-smooth();
 }
 
 a {
@@ -56,6 +60,7 @@ h4,
 h5,
 h6 {
   color: get-color(dark-gray);
+  font-weight: 300;
 
   a {
     position: relative;
@@ -92,7 +97,15 @@ h6 {
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 1.625em;
+  margin-top: .83em;
+  margin-bottom: .83em;
+}
+
+h2 {
+  font-size: 1.375em;
+  margin-top: .6em;
+  margin-bottom: .6em;
 }
 
 p {
@@ -103,6 +116,7 @@ p {
   line-height: 1.6;
 }
 
+// Inline code blocks
 code {
   font-family: get-font-family(code);
 }
@@ -132,22 +146,35 @@ code {
 }
 
 
-@include breakpoint(sm, true) {
+@include breakpoint(sm, true) {h1 {
+  font-size: 1.625em;
+  margin-top: .83em;
+  margin-bottom: .83em;
+}
 
-  h1 {
-    font-size: 1.5em;
-    margin-top: .83em;
-    margin-bottom: .83em;
-  }
-
-  h2 {
-    font-size: 1.25em;
-    margin-top: .6em;
-    margin-bottom: .6em;
-  }
+h2 {
+  font-size: 1.375em;
+  margin-top: .6em;
+  margin-bottom: .6em;
+}
 
   code[class*="language-"],
   pre[class*="language-"] {
     font-size: .875em;
+  }
+}
+
+@include breakpoint(sm) {
+
+  h1 {
+    font-size: 2.25em;
+  }
+
+  h2 {
+    font-size: 1.875em;
+  }
+
+  p {
+    font-size: 1.25em;
   }
 }

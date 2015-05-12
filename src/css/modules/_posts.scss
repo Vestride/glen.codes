@@ -2,7 +2,8 @@
   margin-top: -.25em;
   margin-bottom: 0;
   font-family: get-font-family(code);
-  font-size: 3em;
+  font-size: 2em;
+  letter-spacing: -1px;
 }
 
 .site-intro__title::after {
@@ -30,7 +31,7 @@
 }
 
 .site-intro__description {
-  margin-top: 0;
+  margin-top: 4px;
 }
 
 .post-list {
@@ -50,9 +51,10 @@
   }
 }
 
-@include breakpoint(sm, true) {
+@include breakpoint(sm) {
 
   .site-intro__title {
-    font-size: 2em;
+    font-size: 3em;
+    letter-spacing: -3px;
   }
 }

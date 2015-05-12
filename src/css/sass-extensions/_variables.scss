@@ -59,7 +59,7 @@ $grid-columns: 12;
 $grid-gutter-width: 16px;
 $grid-max-width-mobile: 540px;
 $grid-max-width: 1200px;
-$grid-sizes: (xs, sm, md, lg);
+$grid-sizes: (xs, sm, md); //, lg);
 
 $grid-container-padding: (
   xs: 2%,

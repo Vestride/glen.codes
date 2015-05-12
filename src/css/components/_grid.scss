@@ -75,18 +75,6 @@
   }
 }
 
-
-@include breakpoint(lg) {
-
-  // Generate new grid classes that apply only at this breakpoint and higher.
-  @include make-grid(lg);
-
-  .#{$grid-container} {
-    padding-left: map-get($grid-container-padding, "lg");
-    padding-right: map-get($grid-container-padding, "lg");
-  }
-}
-
 @media (min-width: $viewport-at-max-grid-width) {
   .#{$grid-container} {
     padding-left: $grid-max-container-padding;

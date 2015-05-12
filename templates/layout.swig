@@ -6,8 +6,14 @@
   <meta name="theme-color" content="#3498db">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{% block title %}Glen Codes{% endblock %}</title>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  {% if isProduction and published %}<link rel="dns-prefetch" href="https://glencodes.disqus.com"></script>{% endif %}
+  {% if isProduction and published %}<link rel="dns-prefetch" href="https://a.disquscdn.com"></script>{% endif %}
+  {% if codepen %}<link rel="dns-prefetch" href="https://assets.codepen.io"></script>{% endif %}
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400">
   <meta property="og:site_name" content="glen.codes" />
   {% block open_graph %}
   <meta property="og:url" content="{{ site.url }}" />

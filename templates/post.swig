@@ -3,10 +3,10 @@
 {% block title %}{{ title }} &ndash; Glen Codes{% endblock %}
 
 {% block open_graph -%}
-  <meta property="og:url" content="{{ site.url }}/{{ url }}" />
+  <meta property="og:url" content="{{ site.url }}/{{ path }}" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="{{ title }}" />
-  <meta property="og:description" content="{{ excerpt }}" />
+  <meta property="og:description" content="{{ excerpt | striptags }}" />
   {% if og_image %}<meta property="og:image" content="{{ og_image }}" />{% endif %}
 {%- endblock -%}
 
