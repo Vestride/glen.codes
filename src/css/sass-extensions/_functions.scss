@@ -22,19 +22,12 @@
 
 // type - the map of colors to look in
 // identifier - the color's id in that map
-@function get-color($map, $color: null) {
-  @if type-of($map) == "map" {
-    @return map-get($map, $color);
+@function get-color($name) {
+  @if global-variable-exists('colors') and map-has-key($colors, $name) {
+    @return map-get($colors, $name);
   } @else {
-    $key: to-string($map);
-    @if global-variable-exists('colors') and map-has-key($colors, $key) {
-      @return map-get($colors, $key);
-    } @else {
-      @warn "Unknown color: #{$map}";
-      @return $key;
-    }
+    @return $name;
   }
-
 }
 
 @function z($layer) {

@@ -1,16 +1,18 @@
 'use strict';
 
-var path = require('path');
-var metalsmith = require('metalsmith');
-var markdown = require('metalsmith-markdown');
-var templates = require('metalsmith-templates');
-var permalinks = require('metalsmith-permalinks');
-var collections = require('metalsmith-collections');
-// var branch = require('metalsmith-branch');
-var excerpts = require('metalsmith-excerpts');
-var prism = require('prismjs');
-var renderer = require('./marked-renderer');
-var pkg = require(path.join(__dirname, '../package.json'));
+const path = require('path');
+const metalsmith = require('metalsmith');
+const markdown = require('metalsmith-markdown');
+const layouts = require('metalsmith-layouts');
+const permalinks = require('metalsmith-permalinks');
+const collections = require('metalsmith-collections');
+
+// const branch = require('metalsmith-branch');
+const excerpts = require('metalsmith-excerpts');
+const prism = require('prismjs');
+const renderer = require('./marked-renderer');
+const pkg = require(path.join(__dirname, '../package.json'));
+const config = require('./config');
 
 // https://azurelogic.com/posts/building-a-blog-with-metalsmith/
 
@@ -25,7 +27,7 @@ var extensions = {
   py: 'python',
   rb: 'ruby',
   ps1: 'powershell',
-  psm1: 'powershell'
+  psm1: 'powershell',
 };
 
 var mdOptions = {
@@ -33,25 +35,26 @@ var mdOptions = {
   smartypants: true,
   renderer: renderer,
   langPrefix: 'language-',
-  highlight: function(code, lang) {
+  highlight: function (code, lang) {
     if (!prism.languages.hasOwnProperty(lang)) {
       // Default to markup.
       lang = extensions[lang] || 'markup';
     }
 
     return prism.highlight(code, prism.languages[lang]);
-  }
+  },
 };
 
-module.exports = function(isProduction, done) {
-  metalsmith(path.join(__dirname, '..'))
+module.exports = function (done) {
+  metalsmith(config.root)
     .metadata({
       githubSrc: 'https://github.com/Vestride/glen.codes/blob/master/',
+      isProduction: config.isProduction,
       site: {
         url: 'https://glen.codes',
         name: pkg.name,
-        description: pkg.description
-      }
+        description: pkg.description,
+      },
     })
     .clean(false)
     .use(markdown(mdOptions))
@@ -60,20 +63,17 @@ module.exports = function(isProduction, done) {
       posts: {
         sortBy: 'published',
         reverse: true,
-        refer: true
-      }
+        refer: true,
+      },
     }))
     .use(permalinks({
-      pattern: ':title'
+      pattern: ':title',
     }))
-    .use(templates({
+    .use(layouts({
       engine: 'swig',
       directory: 'templates',
-      locals: {
-        isProduction: isProduction
-      }
     }))
-    .build(function(err) {
+    .build(function (err) {
       if (err) {
         throw err;
       }

@@ -5,8 +5,9 @@ var marked = require('marked');
 var renderer = new marked.Renderer();
 
 // Change the code method to output the same as Prism.js would.
-renderer.code = function(code, lang, escaped) {
+renderer.code = function (code, lang, escaped) {
   code = this.options.highlight(code, lang);
+
   // e.g. "language-js"
   var langClass = lang ? this.options.langPrefix + lang : '';
   var open = '<div class="code-block"><pre class="' + langClass + '">' +
@@ -15,7 +16,7 @@ renderer.code = function(code, lang, escaped) {
   return open + code + close;
 };
 
-renderer.heading = function(text, level, raw) {
+renderer.heading = function (text, level, raw) {
   var id = this.options.headerPrefix + raw.toLowerCase().replace(/[^\w]+/g, '-');
   return '<h' +
     level +

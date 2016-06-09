@@ -2,7 +2,7 @@
 title: Getting the Subpixel Width of an Element
 collection: posts
 published: 2015-04-19
-template: post.swig
+layout: post.swig
 file_name: getting-element-width.md
 codepen: true
 ---

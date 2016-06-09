@@ -3,7 +3,7 @@ title: Using Prism with Metalsmith and Markdown
 collection: posts
 published: 2015-04-22
 file_name: using-prism-with-metalsmith-markdown.md
-template: post.swig
+layout: post.swig
 ---
 
 I, and many others, love using [Prism](http://prismjs.com/) to highlight code and I wanted to add syntax highlighting with Prism to this blog.

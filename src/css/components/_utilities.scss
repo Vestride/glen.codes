@@ -1,3 +1,5 @@
 .marginless {
   margin: 0;
 }
+
+.fill-parent { @include fill-parent(); }
