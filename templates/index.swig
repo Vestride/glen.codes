@@ -24,7 +24,7 @@
         </div>
         <div class="about-me__hello">
           <p class="marginless">Hey, I&rsquo;m <a href="https://glencheney.com">Glen Cheney</a>.</p>
-          <p class="marginless">I&rsquo;m a front-end developer at <a href="http://www.odopod.com">Odopod</a> in San Francisco.</p>
+          <p class="marginless">I&rsquo;m a front-end developer at <a href="http://www.lyft.com">Lyft</a> in San Francisco.</p>
           <p class="marginless">You can find me on <a href="https://github.com/Vestride">GitHub</a>, <a href="https://twitter.com/Vestride">Twitter</a>, and <a href="http://codepen.io/Vestride/">CodePen</a> as Vestride.</p>
         </div>
       </aside>
