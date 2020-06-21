@@ -1,51 +1,35 @@
 {
   "name": "glen.codes",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Glen Cheney’s development blog.",
-  "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc"
   },
-  "engines": {
-    "node": "6.x.x",
-    "npm": "3.x.x"
-  },
-  "keywords": [
-    "blog",
-    "glen"
-  ],
-  "author": "Glen Cheney",
-  "license": "ISC",
   "dependencies": {
-    "app-root-path": "^1.0.0",
-    "compression": "^1.6.2",
-    "connect": "^3.4.1",
-    "del": "^2.2.0",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-clean-css": "^2.0.10",
-    "gulp-connect": "^4.0.0",
-    "gulp-if": "^2.0.1",
-    "gulp-load-tasks": "^0.8.4",
-    "gulp-minify-html": "^1.0.6",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.3.1",
-    "gulp-sequence": "^0.4.5",
-    "gulp-svgmin": "^1.2.2",
-    "marked": "^0.3.5",
-    "metalsmith": "^2.1.0",
-    "metalsmith-branch": "0.0.4",
-    "metalsmith-collections": "^0.7.0",
-    "metalsmith-excerpts": "^1.1.0",
-    "metalsmith-layouts": "^1.6.5",
-    "metalsmith-markdown": "^0.2.1",
-    "metalsmith-permalinks": "^0.5.0",
-    "prismjs": "git://github.com/LeaVerou/prism#gh-pages",
-    "redirecter": "^0.2.3",
-    "serve-static": "^1.11.0",
-    "swig": "^1.4.2",
-    "yargs": "^4.7.1"
+    "classnames": "2.2.6",
+    "date-fns": "2.10.0",
+    "gray-matter": "4.0.2",
+    "next": "^9.4.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "remark": "11.0.2",
+    "remark-html": "10.0.0",
+    "tailwindcss-aspect-ratio": "^3.0.0",
+    "typescript": "^3.9.5"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@svgr/webpack": "^5.4.0",
+    "@types/classnames": "^2.2.10",
+    "@types/jest": "^25.2.2",
+    "@types/node": "^14.0.1",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.0.5",
+    "tailwindcss": "^1.4.6"
+  }
 }

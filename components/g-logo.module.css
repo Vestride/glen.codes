@@ -1,0 +1,105 @@
+.polygon:nth-child(1) {
+  transition-delay: calc(2 * 16ms);
+}
+
+.polygon:nth-child(2) {
+  transition-delay: calc(10 * 16ms);
+}
+
+.polygon:nth-child(3) {
+  transition-delay: calc(7 * 16ms);
+}
+
+.polygon:nth-child(4) {
+  transition-delay: calc(6 * 16ms);
+}
+
+.polygon:nth-child(5) {
+  transition-delay: calc(4 * 16ms);
+}
+
+.polygon:nth-child(6) {
+  transition-delay: calc(3 * 16ms);
+}
+
+.polygon:nth-child(7) {
+  transition-delay: calc(4 * 16ms);
+}
+
+.polygon:nth-child(8) {
+  transition-delay: calc(5 * 16ms);
+}
+
+.polygon:nth-child(9) {
+  transition-delay: calc(8 * 16ms);
+}
+
+.polygon:nth-child(10) {
+  transition-delay: calc(1 * 16ms);
+}
+
+.polygon:nth-child(11) {
+  transition-delay: calc(9 * 16ms);
+}
+
+.link:hover .polygon {
+  fill: theme('colors.odopink');
+}
+
+.link:hover .polygon:nth-child(2) {
+  fill: hsl(335, 71%, 65%);
+}
+
+.link:hover .polygon:nth-child(3) {
+  fill: hsl(335, 62%, 36%);
+}
+
+.link:hover .polygon:nth-child(4) {
+  fill: hsl(335, 76%, 38%);
+}
+
+.link:hover .polygon:nth-child(5) {
+  fill: hsl(335, 71%, 45%);
+}
+
+.link:hover .polygon:nth-child(6) {
+  fill: hsl(335, 71%, 58%);
+}
+
+.link:hover .polygon:nth-child(7) {
+  fill: hsl(335, 71%, 50%);
+}
+
+.link:hover .polygon:nth-child(8) {
+  fill: hsl(335, 70%, 55%);
+}
+
+.link:hover .polygon:nth-child(9) {
+  fill: hsl(335, 71%, 52%);
+}
+
+.link:hover .polygon:nth-child(10) {
+  fill: hsl(335, 61%, 48%);
+}
+
+.link:hover .polygon:nth-child(11) {
+  fill: hsl(335, 71%, 45%);
+}
+
+.text,
+.link svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.text,
+.polygon {
+  transition: 100ms ease-out;
+}
+
+@media (min-width: 1280px) {
+  .link svg {
+    width: 56px;
+    height: 56px;
+  }
+}
