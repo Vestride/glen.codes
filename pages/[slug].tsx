@@ -27,15 +27,13 @@ const Post = ({ post, morePosts }: PostProps) => {
           <p>Loading…</p>
         ) : (
           <>
-            <article className="overflow-hidden" itemScope itemType="http://schema.org/BlogPosting">
+            <article itemScope itemType="http://schema.org/BlogPosting">
               <Head>
                 <title>{post.title} &ndash; Glen Codes</title>
                 <meta property="og:image" content={post.ogImage.url} />
               </Head>
-              <Container>
-                <PostHeader title={post.title} fileName={post.fileName} date={post.date} />
-                <PostBody content={post.content} />
-              </Container>
+              <PostHeader title={post.title} fileName={post.fileName} date={post.date} />
+              <PostBody content={post.content} />
               {post.codepen && <script async src="https://assets.codepen.io/assets/embed/ei.js"></script>}
             </article>
           </>

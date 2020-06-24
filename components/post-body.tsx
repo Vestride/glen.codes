@@ -5,11 +5,7 @@ interface PostBodyProps {
 }
 
 const PostBody = ({ content }: PostBodyProps) => {
-  return (
-    <div>
-      <div className={styles.markdown} dangerouslySetInnerHTML={{ __html: content }} />
-    </div>
-  );
+  return <div className={styles.markdown} dangerouslySetInnerHTML={{ __html: content }} />;
 };
 
 export default PostBody;
