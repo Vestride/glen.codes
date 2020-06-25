@@ -1,0 +1,122 @@
+@tailwind base;
+
+html {
+  @apply text-gray-700;
+}
+
+/* Write your own custom base styles here */
+a {
+  @apply text-light-blue;
+  @apply no-underline;
+}
+
+a:visited {
+  @apply text-purple-700;
+}
+
+a:active {
+  @apply text-gray-800;
+}
+
+p a {
+  @apply relative;
+  @apply inline-block;
+  @apply align-bottom;
+  @apply overflow-hidden;
+}
+
+p a::after {
+  content: '';
+  @apply absolute;
+  @apply top-0;
+  @apply left-0;
+  z-index: -1;
+  @apply w-full;
+  @apply h-full;
+  @apply bg-gray-300;
+  @apply transition-transform;
+  @apply duration-150;
+  @apply ease-out;
+  transform: translateY(95%);
+}
+
+p a:hover::after,
+p a:focus::after {
+  transform: translateY(0);
+}
+
+@media (min-width: 1024px) {
+  p {
+    font-size: 1.25em;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
+}
+
+:matches(h1, h2, h3, h4, h5, h6) a {
+  @apply relative;
+  @apply inline-block;
+  @apply align-bottom;
+  @apply overflow-hidden;
+}
+
+:matches(h1, h2, h3, h4, h5, h6) a::after {
+  content: '';
+  @apply absolute;
+  @apply bottom-0;
+  @apply left-0;
+  @apply w-full;
+  z-index: -1;
+  height: 2px;
+  @apply bg-gray-300;
+  @apply transition-transform;
+  @apply duration-200;
+  @apply ease-out;
+  @apply transform;
+  @apply -translate-x-full;
+}
+
+:matches(h1, h2, h3, h4, h5, h6) a:matches(:hover, :focus) {
+  outline: none;
+}
+
+:matches(h1, h2, h3, h4, h5, h6) a:matches(:hover, :focus)::after {
+  @apply translate-x-0;
+}
+
+:not(pre) > code {
+  padding: 0.2em 0;
+  margin: 0;
+  font-size: 85%;
+  color: #000;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px;
+}
+
+:not(pre) > code::before,
+:not(pre) > code::after {
+  content: '\00a0';
+  letter-spacing: -0.2em;
+}
+
+/* Start purging... */
+@tailwind components;
+/* Stop purging. */
+
+/* Write you own custom component styles here */
+iframe[src*='codepen.io'] {
+  border: 1px solid theme('colors.light-blue');
+}
+
+/* Start purging... */
+@tailwind utilities;
+/* Stop purging. */
+
+/* Your own custom utilities */
