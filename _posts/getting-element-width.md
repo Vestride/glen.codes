@@ -98,7 +98,7 @@ First, we check if `getComputedStyle` is available (IE9+). If it's not, fall bac
 
 Here's a codepen demo with it all together. All the code is the same except I've replaced jQuery's `$.isNumeric`. I've made each column `33.33333%` width
 
-<p data-height="200" data-theme-id="14323" data-slug-hash="dobEWJ" data-default-tab="result" data-user="Vestride" class='codepen'>See the Pen <a href='http://codepen.io/Vestride/pen/dobEWJ/'>Getting the subpixel width of an element</a> by Glen Cheney (<a href='http://codepen.io/Vestride'>@Vestride</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js,result" data-user="Vestride" data-slug-hash="dobEWJ" data-preview="true" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Getting the subpixel width of an element"><span>See the Pen <a href="https://codepen.io/Vestride/pen/dobEWJ">Getting the subpixel width of an element</a> by Glen Cheney (<a href="https://codepen.io/Vestride">@Vestride</a>) on <a href="https://codepen.io">CodePen</a>.</span></p>
 
 ---
 

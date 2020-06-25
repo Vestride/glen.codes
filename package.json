@@ -5,7 +5,7 @@
   "description": "Glen Cheney’s development blog.",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "typecheck": "tsc"
   },

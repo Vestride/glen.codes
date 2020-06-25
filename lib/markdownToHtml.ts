@@ -3,6 +3,7 @@ import refractor from 'refractor';
 import rehype from 'rehype';
 
 const md = MarkdownIt({
+  html: true,
   highlight(str: string, lang: string) {
     if (lang) {
       const nodes = refractor.highlight(str, lang);
