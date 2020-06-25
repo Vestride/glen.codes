@@ -4,11 +4,11 @@ export const AboutMe: React.FunctionComponent = () => (
       <div className="relative overflow-hidden aspect-ratio-1/1">
         <img
           className="absolute bg-cover w-full h-full"
-          srcSet="/assets/glen-175w.jpg 175w,
-          /assets/glen-300w.jpg 300w,
-          /assets/glen-400w.jpg 400w,
-          /assets/glen-600w.jpg 600w"
-          sizes="(min-width: 1290px) 300px, (min-width: 1016px) 22vw, (min-width: 760px) 29vw, 28vw"
+          srcSet="/assets/glen-224w.jpg 224w,
+          /assets/glen-286w.jpg 286w,
+          /assets/glen-444w.jpg 444w,
+          /assets/glen-572w.jpg 572w"
+          sizes="(min-width: 1280px) 286px, (min-width: 768px) 222px, calc((100vw-56px)/3)"
           src="/assets/glen-600w.jpg"
           alt="A photo of Glen Cheney smiling while sitting in a restaurant."
         />

@@ -1,13 +1,13 @@
-import Container from '../components/container';
-import Layout from '../components/layout';
+import { Container } from '../components/container';
+import { Layout } from '../components/layout';
 import { getAllPosts } from '../lib/api';
 import { IndexPostsList } from '../components/index-posts-list';
 import { AboutMe } from '../components/about-me';
 import { Intro } from '../components/intro';
-import Post from '../types/post';
+import { PostType } from '../types/post';
 
 interface IndexProps {
-  allPosts: Post[];
+  allPosts: PostType[];
 }
 
 const Index = ({ allPosts }: IndexProps) => {
@@ -19,7 +19,7 @@ const Index = ({ allPosts }: IndexProps) => {
             <Intro />
           </div>
         </div>
-        <div className="grid grid-cols-12 gap-8 mt-4">
+        <div className="grid grid-cols-12 row-gap-8 md:col-gap-8 mt-4">
           <div className="col-span-12 md:col-span-4 md:order-2 lg:col-span-3 lg:col-end-13">
             <AboutMe />
           </div>

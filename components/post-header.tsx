@@ -8,7 +8,7 @@ interface PostHeaderProps {
   date: string;
 }
 
-const PostHeader = ({ title, fileName, date }: PostHeaderProps) => {
+export const PostHeader = ({ title, fileName, date }: PostHeaderProps) => {
   return (
     <>
       <h1 className="text-gray-800 text-2xl md:text-4xl my-4" itemProp="headline">
@@ -30,5 +30,3 @@ const PostHeader = ({ title, fileName, date }: PostHeaderProps) => {
     </>
   );
 };
-
-export default PostHeader;

@@ -1,14 +1,8 @@
-import React from 'react';
-
 import { Header } from './header';
 import { Footer } from './footer';
 import { Meta } from './meta';
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
-const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => (
+export const Layout: React.FunctionComponent = ({ children }) => (
   <div className="flex flex-col min-h-screen">
     <Meta />
     <Header />
@@ -16,5 +10,3 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => (
     <Footer />
   </div>
 );
-
-export default Layout;

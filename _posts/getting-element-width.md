@@ -3,8 +3,6 @@ title: Getting the Subpixel Width of an Element
 excerpt: There are many ways to retrieve the size dimensions for an element with JavaScript. While working on Shuffle, I needed to get the subpixel width of some elements.
 coverImage: null
 date: '2015-04-19'
-ogImage:
-  url: '/assets/blog/hello-world/cover.jpg'
 codepen: true
 fileName: getting-element-width.md
 ---
@@ -31,7 +29,7 @@ var COMPUTED_SIZE_INCLUDES_PADDING = (function () {
 
   var parent = document.body || document.documentElement;
   var e = document.createElement('div');
-  e.style.cssText = 'width:10px;padding:2px;' + '-webkit-box-sizing:border-box;box-sizing:border-box;';
+  e.style.cssText = 'width:10px;padding:2px;-webkit-box-sizing:border-box;box-sizing:border-box;';
   parent.appendChild(e);
 
   var width = getStyles(e, null).width;

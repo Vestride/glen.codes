@@ -1,10 +1,10 @@
 import cn from 'classnames';
 
 import { DateTime } from './date-time';
-import Post from '../types/post';
+import { PostType } from '../types/post';
 
 interface IndexPostsListProps {
-  posts: Post[];
+  posts: PostType[];
 }
 
 export const IndexPostsList: React.FunctionComponent<IndexPostsListProps> = ({ posts }) => (

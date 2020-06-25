@@ -1,5 +1,5 @@
 import { GLogo } from './g-logo';
-import Container from './container';
+import { Container } from './container';
 
 export const Header: React.FunctionComponent = () => {
   return (

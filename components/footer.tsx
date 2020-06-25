@@ -1,4 +1,4 @@
-import Container from './container';
+import { Container } from './container';
 import Code from '../icons/code.svg';
 import Heart from '../icons/heart.svg';
 

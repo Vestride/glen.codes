@@ -3,8 +3,6 @@ title: Using Prism with Metalsmith and Markdown
 excerpt: I, and many others, love using Prism to highlight code and I wanted to add syntax highlighting with Prism to a Metalsmith blog.
 coverImage: null
 date: '2015-04-22'
-ogImage:
-  url: '/assets/blog/hello-world/cover.jpg'
 codepen: false
 fileName: using-prism-with-metalsmith-markdown.md
 ---

@@ -16,6 +16,6 @@ const md = MarkdownIt({
   },
 });
 
-export default function markdownToHtml(markdown: string) {
+export function markdownToHtml(markdown: string) {
   return md.render(markdown);
 }
