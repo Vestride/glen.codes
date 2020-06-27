@@ -6,6 +6,7 @@ import { Container } from '../components/container';
 import { PostBody } from '../components/post-body';
 import { PostHeader } from '../components/post-header';
 import { Layout } from '../components/layout';
+import { PostComments } from '../components/post-comments';
 import { getPostBySlug, getAllPosts } from '../lib/api';
 import { markdownToHtml } from '../lib/markdownToHtml';
 import { PostType } from '../types/post';
@@ -32,6 +33,7 @@ const Post = ({ post }: PostProps) => {
               </Head>
               <PostHeader title={post.title} fileName={post.fileName} date={post.date} />
               <PostBody content={post.content} />
+              <PostComments />
               {post.codepen && <script async src="https://assets.codepen.io/assets/embed/ei.js"></script>}
             </article>
           </>
