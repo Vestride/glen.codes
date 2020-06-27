@@ -33,7 +33,7 @@ const Post = ({ post }: PostProps) => {
               </Head>
               <PostHeader title={post.title} fileName={post.fileName} date={post.date} />
               <PostBody content={post.content} />
-              <PostComments />
+              <PostComments slug={post.slug} />
               {post.codepen && <script async src="https://assets.codepen.io/assets/embed/ei.js"></script>}
             </article>
           </>
