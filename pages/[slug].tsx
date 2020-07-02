@@ -35,6 +35,9 @@ const Post = ({ post }: PostProps) => {
               <PostBody content={post.content} />
               <PostComments slug={post.slug} />
               {post.codepen && <script async src="https://assets.codepen.io/assets/embed/ei.js"></script>}
+              {process.env.NODE_ENV === 'production' && (
+                <script async src="https://glencodes.disqus.com/embed.js"></script>
+              )}
             </article>
           </>
         )}

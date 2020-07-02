@@ -8,7 +8,6 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          {process.env.NODE_ENV === 'production' && <script async src="https://glencodes.disqus.com/embed.js"></script>}
         </body>
       </Html>
     );
