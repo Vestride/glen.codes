@@ -4,7 +4,7 @@ import Router from 'next/router';
 
 import { sendPageview } from '../lib/analytics';
 
-import 'dracula-prism/css/dracula-prism.css';
+import 'dracula-prism/dist/css/dracula-prism.css';
 import '../styles/index.css';
 
 export default function MyApp({ Component, pageProps }: AppProps) {

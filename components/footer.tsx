@@ -3,7 +3,7 @@ import Code from '../icons/code.svg';
 import Heart from '../icons/heart.svg';
 
 export const Footer: React.FunctionComponent = () => (
-  <footer className="mt-4 py-8 text-center bg-blue-900" role="contentinfo">
+  <footer className="mt-4 py-8 text-center bg-gray-800" role="contentinfo">
     <Container>
       <nav>
         <a href="https://glencheney.com" className="group text-white visited:text-white">

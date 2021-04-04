@@ -14,12 +14,12 @@ const Index = ({ allPosts }: IndexProps) => {
   return (
     <Layout>
       <Container>
-        <div className="grid grid-cols-12">
+        <div className="grid grid-cols-12 mt-2">
           <div className="col-span-12 md:col-span-10">
             <Intro />
           </div>
         </div>
-        <div className="grid grid-cols-12 row-gap-8 md:col-gap-8 mt-4">
+        <div className="grid grid-cols-12 gap-y-8 md:gap-x-8 mt-4">
           <div className="col-span-12 md:col-span-4 md:order-2 lg:col-span-3 lg:col-end-13">
             <AboutMe />
           </div>
